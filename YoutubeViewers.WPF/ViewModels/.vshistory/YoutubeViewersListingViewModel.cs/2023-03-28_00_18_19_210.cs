@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using YoutubeViewers.WPF.Stores;
+
+namespace YoutubeViewers.WPF.ViewModels
+{
+    public class YoutubeViewersListingViewModel : ViewModelBase
+    {
+        private readonly ObservableCollection<YoutubeViewersListingItemViewModel> _youtubeViewersListingItemViewModels;
+        private readonly SelectedYoutubeViewerStore _selectedYoutubeViewerStore;
+
+        public IEnumerable<YoutubeViewersListingItemViewModel> YoutubeViewersListingItemViewModels => _youtubeViewersListingItemViewModels;
+
+        private YoutubeViewersListingItemViewModel _selectedYoutubeViewerListingItemViewModel;
+
+        public YoutubeViewersListingItemViewModel SelectedYoutubeViewerListingItemViewModel
+        {
+            get
+            {
+                return _selectedYoutubeViewerListingItemViewModel;
+            }
+            set
+            {
+                _selectedYoutubeViewerListingItemViewModel = value;
+                OnePropertyChanged(nameof(SelectedYoutubeViewerListingItemViewModel));
+            }
+        }
+
+
+        public YoutubeViewersListingViewModel(SelectedYoutubeViewerStore _selectedYoutubeViewerStore)
+        {
+            _youtubeViewersListingItemViewModels = new ObservableCollection<YoutubeViewersListingItemViewModel>
+            {
+                new YoutubeViewersListingItemViewModel("Mary"),
+                new YoutubeViewersListingItemViewModel("Sean"),
+                new YoutubeViewersListingItemViewModel("Alan")
+            };
+            selectedYoutubeViewerStore = _selectedYoutubeViewerStore;
+        }
+    }
+}

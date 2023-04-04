@@ -1,0 +1,32 @@
+﻿<Window x:Class="YoutubeViewers.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
+        xmlns:views="clr-namespace:YoutubeViewers.WPF.Views"
+        xmlns:viewmodels="clr-namespace:YoutubeViewers.WPF.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YoutubeViewers.WPF"
+        WindowStartupLocation="CenterScreen"
+        Title="Youtube Viewers"
+        Width="800"
+        Height="450"
+        FontSize="14"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type 
+    </Window.Resources>
+    <!--<Window.Resources>
+        <DataTemplate DataType="{x:Type views:AddYoutubeViewersView}" />
+        <DataTemplate DataType="{x:Type views:EditYoutubeViewerView}" />
+    </Window.Resources>-->
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <custom:Modal IsOpen="{Binding IsModalOpen}">
+                <ContentControl Content="{Binding CurrentModalViewModel}" />
+            </custom:Modal>
+            
+            <views:YoutubeViewersView Margin="25" DataContext="{Binding YoutubeViewersViewModel}" />
+        </Grid>
+    </ScrollViewer>
+</Window>
